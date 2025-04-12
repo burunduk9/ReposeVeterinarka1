@@ -10,7 +10,7 @@
         <StackPanel>
             <Label Content="add priem" FontSize="24"/>
             <Label Content="id_animal"/>
-            <ComboBox ItemsSource="{Binding animals}" x:Name="comboAnimal">
+            <!--<ComboBox ItemsSource="{Binding animals}" x:Name="comboAnimal">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel>
@@ -18,8 +18,8 @@
                         </StackPanel>
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
-            </ComboBox>
-            <!--<TextBox x:Name="txtAnimal"/>-->
+            </ComboBox>-->
+            <TextBox x:Name="txtAnimal"/>
             <Label Content="id_vrach"/>
             <TextBox x:Name="txtVrach"/>
             <Label Content="date"/>

@@ -35,12 +35,12 @@ namespace VeterinarkaProject.WindowApp
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (comboAnimal.SelectedItem != null/*txtAnimal.Text != "" &&*/ && txtVrach.Text != "" && dateDate.SelectedDate != null/*txtDate.DataContext != null*/ && txtComment.Text != "")
+            if (/*comboAnimal.SelectedItem != null*/txtAnimal.Text != "" && txtVrach.Text != "" && dateDate.SelectedDate != null/*txtDate.DataContext != null*/ && txtComment.Text != "")
             {
                 Priem priem = new Priem()
                 {
-                    id_animal = (comboAnimal.SelectedItem as Animal).id,
-                    //id_animal = Convert.ToInt32(txtAnimal.Text),
+                    //id_animal = (comboAnimal.SelectedItem as Animal).id,
+                    id_animal = Convert.ToInt32(txtAnimal.Text),
                     id_vrach = Convert.ToInt32(txtVrach.Text),
 
                     date_priem = dateDate.SelectedDate, /*Convert.ToDateTime(txtDate.DataContext),*/
