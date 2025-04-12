@@ -21,9 +21,11 @@ namespace VeterinarkaProject.WindowApp
     /// </summary>
     public partial class AddWindow : Window
     {
+        public static List<Animal> animals { get; set; }
         public AddWindow()
         {
             InitializeComponent();
+            animals = new List<Animal>(App.Connection.Animal);
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
@@ -33,13 +35,15 @@ namespace VeterinarkaProject.WindowApp
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (txtAnimal.Text != "" && txtVrach.Text != "" && txtDate.DataContext != null && txtComment.Text != "")
+            if (comboAnimal.SelectedItem != null/*txtAnimal.Text != "" &&*/ && txtVrach.Text != "" && dateDate.SelectedDate != null/*txtDate.DataContext != null*/ && txtComment.Text != "")
             {
                 Priem priem = new Priem()
                 {
-                    id_animal = Convert.ToInt32(txtAnimal.Text),
+                    id_animal = (comboAnimal.SelectedItem as Animal).id,
+                    //id_animal = Convert.ToInt32(txtAnimal.Text),
                     id_vrach = Convert.ToInt32(txtVrach.Text),
-                    date_priem = Convert.ToDateTime(txtDate.DataContext),
+
+                    date_priem = dateDate.SelectedDate, /*Convert.ToDateTime(txtDate.DataContext),*/
                     comment = txtComment.Text,
                     is_delete = false
                 };

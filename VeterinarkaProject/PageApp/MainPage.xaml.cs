@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -50,15 +51,27 @@ namespace VeterinarkaProject.PageApp
 
         private void btnReduct_Click(object sender, RoutedEventArgs e)
         {
-
+            WindowApp.ReductWindow reductWindow = new WindowApp.ReductWindow();
+            reductWindow.Show();
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             var priemka1 = (sender as Button).DataContext as Priem;
-            priemka1.is_delete = false;
-            App.Connection.SaveChanges();
-            ListPriem.ItemsSource = new List<Priem>(App.Connection.Priem.Where(u => u.is_delete == false).ToList());
+            if (priemka1 != null)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show($"уверены в удалении", "press f", MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    priemka1.is_delete = true;
+                    App.Connection.SaveChanges();
+                    ListPriem.ItemsSource = new List<Priem>(App.Connection.Priem.Where(u => u.is_delete == false).ToList());
+                }
+            }
+            else
+            {
+                MessageBox.Show("такого нет");
+            }
         }
     }
 }

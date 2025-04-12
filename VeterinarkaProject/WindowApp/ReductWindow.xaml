@@ -10,13 +10,23 @@
         <StackPanel>
             <Label Content="reduct priem" FontSize="24"/>
             <Label Content="id_animal"/>
-            <TextBox x:Name="txtAnimal" Text="{Binding id_animal}"/>
+            <!--<ComboBox ItemsSource="{Binding animals}" x:Name="comboAnimal">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Label Content="{Binding name}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>-->
+            <TextBox x:Name="txtAnimal"/>
             <Label Content="id_vrach"/>
-            <TextBox x:Name="txtVrach" Text="{Binding id_vrach}"/>
+            <TextBox x:Name="txtVrach"/>
             <Label Content="date"/>
-            <DatePicker x:Name="txtDate" Text="{Binding date_priem}"/>
+            <DatePicker x:Name="dateDate"/>
+            <!--<DatePicker x:Name="txtDate"/>-->
             <Label Content="comment"/>
-            <TextBox x:Name="txtComment" Text="{Binding comment}"/>
+            <TextBox x:Name="txtComment"/>
 
             <StackPanel HorizontalAlignment="Center" Margin="20" Orientation="Horizontal">
                 <Button Content="Сохранить" Height="30" Width="120" Margin="5" x:Name="btnSave" Click="btnSave_Click"/>

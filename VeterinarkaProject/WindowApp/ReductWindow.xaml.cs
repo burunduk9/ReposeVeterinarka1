@@ -20,35 +20,12 @@ namespace VeterinarkaProject.WindowApp
     /// </summary>
     public partial class ReductWindow : Window
     {
+        public static List<Animal> animals1 { get; set; }
         public ReductWindow()
         {
             InitializeComponent();
+            animals1 = new List<Animal>(App.Connection.Animal);
         }
-        //Students _SelectedMeme { get; set; }
-        //public Reduct(Students students)
-        //{
-        //    InitializeComponent();
-        //    _SelectedMeme = students;
-        //    txtFirstName.DataContext = _SelectedMeme;
-        //    txtLastName.DataContext = _SelectedMeme;
-        //    txtGroup.DataContext = _SelectedMeme;
-        //    txtGender.DataContext = _SelectedMeme;
-        //    txtSpec.DataContext = _SelectedMeme;
-        //}
-        //private void Returnbtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    this.Close();
-        //}
-
-        //private void AddClientbtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    _SelectedMeme.isDelete = 1;
-        //    ClassApp.ClassEditStudent classEditStudent = new ClassApp.ClassEditStudent();
-        //    classEditStudent.NewStudent(txtFirstName.Text, txtLastName.Text, Convert.ToInt32(txtGroup.Text), Convert.ToInt32(txtGender.Text), Convert.ToInt32(txtSpec.Text)/*, selCombo.Id_groups*/);
-        //    App.Connection.SaveChanges();
-        //    MessageBox.Show("обновлено успешно");
-        //    this.Close();
-        //}
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -56,13 +33,15 @@ namespace VeterinarkaProject.WindowApp
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (txtAnimal.Text != "" && txtVrach.Text != "" && txtDate.DataContext != null && txtComment.Text != "")
+            if (/*comboAnimal.SelectedItem != null*/txtAnimal.Text != "" && txtVrach.Text != "" && dateDate.SelectedDate != null/*txtDate.DataContext != null*/ && txtComment.Text != "")
             {
                 Priem priem = new Priem()
                 {
+                    //id_animal = (comboAnimal.SelectedItem as Animal).id,
                     id_animal = Convert.ToInt32(txtAnimal.Text),
                     id_vrach = Convert.ToInt32(txtVrach.Text),
-                    date_priem = Convert.ToDateTime(txtDate.DataContext),
+
+                    date_priem = dateDate.SelectedDate, /*Convert.ToDateTime(txtDate.DataContext),*/
                     comment = txtComment.Text,
                     is_delete = false
                 };
@@ -74,6 +53,24 @@ namespace VeterinarkaProject.WindowApp
             {
                 MessageBox.Show("не все норм");
             }
+            //if (txtAnimal.Text != "" && txtVrach.Text != "" && txtDate.DataContext != null && txtComment.Text != "")
+            //{
+            //    Priem priem = new Priem()
+            //    {
+            //        id_animal = Convert.ToInt32(txtAnimal.Text),
+            //        id_vrach = Convert.ToInt32(txtVrach.Text),
+            //        date_priem = Convert.ToDateTime(txtDate.DataContext),
+            //        comment = txtComment.Text,
+            //        is_delete = false
+            //    };
+            //    App.Connection.SaveChanges();
+            //    MessageBox.Show("все норм");
+            //    this.Close();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("не все норм");
+            //}
         }
     }
 }
