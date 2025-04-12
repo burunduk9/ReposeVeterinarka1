@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using VeterinarkaProject.ADOApp;
 
 namespace VeterinarkaProject.PageApp
 {
@@ -20,9 +22,43 @@ namespace VeterinarkaProject.PageApp
     /// </summary>
     public partial class MainPage : Page
     {
+        public static List<Priem> priemchik { get; set; }
         public MainPage()
         {
             InitializeComponent();
+            priemchik = new List<Priem>(App.Connection.Priem.Where(u => u.is_delete == false).ToList());
+        }
+
+        private void Searchik_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchikLine = Searchik.Text.Trim();
+            if(searchikLine == "")
+            {
+                ListPriem.ItemsSource = priemchik.ToList();
+            }
+            else
+            {
+                ListPriem.ItemsSource = priemchik.Where(u => u.Animal.name == searchikLine).ToList();
+            }
+        }
+
+        private void btnAddPriem_Click(object sender, RoutedEventArgs e)
+        {
+            WindowApp.AddWindow addWindow = new WindowApp.AddWindow();
+            addWindow.Show();
+        }
+
+        private void btnReduct_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            var priemka1 = (sender as Button).DataContext as Priem;
+            priemka1.is_delete = false;
+            App.Connection.SaveChanges();
+            ListPriem.ItemsSource = new List<Priem>(App.Connection.Priem.Where(u => u.is_delete == false).ToList());
         }
     }
 }

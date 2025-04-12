@@ -9,6 +9,39 @@
       Title="MainPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel>
+            <Label Content="Welcome" FontSize="24"/>
+            <Button Content="add new priem" x:Name="btnAddPriem" Click="btnAddPriem_Click"/>
+        </StackPanel>
         
+        <StackPanel Grid.Column="1">
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="Searchik" TextChanged="Searchik_TextChanged"/>
+                <Label Content="filtr"/>
+            </StackPanel>
+            
+            <ScrollViewer Height="300">
+                <ListView x:Name="ListPriem" ItemsSource="{Binding Priem}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label Content="Запись на прием"/>
+                                <Label Content="{Binding id_animal}"/>
+                                <Label Content="{Binding id_vrach}"/>
+                                <Label Content="{Binding date_priem}"/>
+                                <Label Content="{Binding comment}"/>
+                                <Button x:Name="btnReduct" Content="reduct" Click="btnReduct_Click" Width="120"/>
+                                <Button x:Name="btnDelete" Content="delete" Click="btnDelete_Click" Width="120"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </ScrollViewer>
+        </StackPanel>
     </Grid>
 </Page>

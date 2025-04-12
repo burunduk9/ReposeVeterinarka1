@@ -27,7 +27,23 @@ namespace VeterinarkaProject.PageApp
 
         private void btnAuto_Click(object sender, RoutedEventArgs e)
         {
-            //var vrach = App
+            var vrach = App.Connection.Vrach.Where(u => u.login == txtLog.Text && u.password == txtPas.Password).FirstOrDefault();
+            if(txtLog.Text != "" && txtPas.Password != null)
+            {
+                if(vrach != null)
+                {
+                    MessageBox.Show("все норм");
+                    NavigationService.Navigate(new PageApp.MainPage());
+                }
+                else
+                {
+                    MessageBox.Show("все не норм");
+                }
+            }
+            else
+            {
+                MessageBox.Show("не все заполнено");
+            }
         }
     }
 }
