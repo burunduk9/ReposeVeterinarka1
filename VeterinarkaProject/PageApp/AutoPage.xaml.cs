@@ -13,17 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace VeterinarkaProject
+namespace VeterinarkaProject.PageApp
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для AutoPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AutoPage : Page
     {
-        public MainWindow()
+        public AutoPage()
         {
             InitializeComponent();
-            MainFrame.NavigationService.Navigate(new PageApp.AutoPage());
+        }
+
+        private void btnAuto_Click(object sender, RoutedEventArgs e)
+        {
+            //var vrach = App
         }
     }
 }
